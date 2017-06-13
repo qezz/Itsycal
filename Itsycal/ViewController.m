@@ -388,14 +388,19 @@
 
 - (void)updateMenubarIcon
 {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHideIcon]) {
-        _statusItem.button.image = nil;
-        _statusItem.button.imagePosition = NSNoImage;
-    }
-    else {
-        _statusItem.button.image = [self iconImageForText:[self iconText]];
-        _statusItem.button.imagePosition = _clockFormat ? NSImageLeft : NSImageOnly;
-    }
+    // This is a hack to hide frame with date
+    _statusItem.button.image = nil;
+    _statusItem.button.imagePosition = NSNoImage;
+
+//    if ([[NSUserDefaults standardUserDefaults] boolForKey:kHideIcon]) {
+//        _statusItem.button.image = nil;
+//        _statusItem.button.imagePosition = NSNoImage;
+//    }
+//    else {
+//        _statusItem.button.image = [self iconImageForText:[self iconText]];
+//        _statusItem.button.imagePosition = _clockFormat ? NSImageLeft : NSImageOnly;
+//    }
+
     if (_clockFormat) {
         [_iconDateFormatter setDateFormat:_clockFormat];
         _statusItem.button.title = [_iconDateFormatter stringFromDate:[NSDate new]];
